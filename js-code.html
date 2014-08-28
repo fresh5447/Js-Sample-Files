@@ -1,0 +1,159 @@
+<script>
+// working with namespaces 
+
+var MyApp = {};
+MyApp.view = {};
+MyApp.view.top2 = function () {
+                return "top2 function in view";
+             };
+
+MyApp.model = {};
+MyApp.model.init = function() {
+                return "init function in model";
+             };
+
+MyApp.utils = {};
+MyApp.utils.conv = function()  {
+                return "conv function in utils"; 
+             };  
+
+var top2 = function () { 
+                return "regular top2"; 
+             };  
+
+var init = function() { 
+                return "regular init"; 
+             };  
+
+var conv = function()  {   
+                return "regular conv"; 
+             };  
+
+console.log("MyApp top2:   "+MyApp.view.top2());
+console.log("MyApp init:   "+MyApp.model.init());
+console.log("MyApp conv:   "+MyApp.utils.conv());
+
+console.log("Regular top2: "+top2());
+console.log("Regular init: "+init());
+console.log("Regular conv: "+conv());
+
+// top is an existing object in the browser:
+console.log("top:   "+top);
+</script>
+
+<script>
+// functions and variables 
+var hello = function () {
+                return "goodbye";
+            }   
+
+console.log("Invoking hello directly:");
+hello();
+
+var msg  = hello();
+console.log("msg     = "+msg);
+console.log("hello   = "+hello);
+console.log("hello() = "+hello());
+</script>
+
+<script>
+// literal objects #1
+var a="abc", x=5, y=8;
+var obj = {a:"def", x:7, y:9};
+
+console.log("a = "+a+" x = "+x+" y = "+y);
+console.log("obj.a = "+obj.a+" obj.x = "+obj.x+
+            " obj.y = "+obj.y);
+</script>
+
+<script>
+// literal objects #2
+var obj = { 
+   a : "def",
+   x : 7,
+   y : 9,
+   hello : function() {
+             return "goodbye";
+           }
+};
+
+console.log("obj.hello   = "+obj.hello);
+console.log("obj.hello() = "+obj.hello());
+</script>
+
+<script>
+// literal objects #3
+var obj = { 
+   x : 7,
+   y : 9,
+   addition: function(z) {
+             //This causes an error:
+             //return x+y+z;
+
+             //This is correct:
+             return this.x+this.y+z;
+           }   
+};
+
+var w = obj.addition(13);
+
+console.log("obj.addition =     "+obj.addition);
+console.log("obj.addition(13) = "+obj.addition(13));
+console.log("obj.addition()   = "+obj.addition());
+</script>
+
+<script>
+// nested objects #1
+function topLevel(name) {
+  // "msg" is a local variable
+  var msg1 = 'TOPLEVEL 1: '+name; 
+
+  return function() { 
+    var msg2 = 'LEVEL 2: '+msg1; 
+    return function() { return msg2; }
+  }
+}
+
+var x1 = topLevel("John");
+console.log("x1:   "+x1);
+console.log("x1(): "+x1());
+
+var x2 = topLevel("John")();
+console.log("x2:   "+x2);
+
+var x3 = topLevel("John")()();
+console.log("x3:   "+x3);
+</script>
+
+<script>
+// nested objects #2
+function topLevel(name) {
+  // "msg1" is a local variable
+  var msg1 = 'TOPLEVEL 1: '+name; 
+
+  return function() { 
+    // "msg2" is a local variable
+    var msg2 = 'LEVEL 2: '+msg1; 
+ 
+    return function() { 
+      // "msg3" is a local variable
+      var msg3 = 'LEVEL 3: '+msg2; 
+      return function() { return msg3; }
+    }   
+  }
+}
+
+var x1 = topLevel("John");
+console.log("x1:   "+x1);
+console.log("x1(): "+x1());
+
+var x2 = topLevel("John")();
+console.log("x2:   "+x2);
+
+var x3 = topLevel("John")()();
+console.log("x3:   "+x3);
+
+var x4 = topLevel("John")()()();
+console.log("x4:   "+x4);
+</script>
+

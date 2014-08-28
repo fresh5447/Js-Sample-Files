@@ -1,0 +1,43 @@
+<html>
+<head> 
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <script>
+   var s="abc", x="3", y="7", z=x+y;
+   var w = parseInt(x)+parseInt(y);
+ 
+   console.log("x = "+x); 
+   console.log("y = "+y); 
+   console.log("z = "+z); // add strings 
+   console.log("w = "+w); // add numbers 
+ 
+   // NaN because s is not a number:
+   var a = parseInt(s)+parseInt(x);
+   console.log("a = "+a); 
+
+   /* 
+   =======================================
+   HERE IS THE OUTPUT:
+   x = 3 
+   y = 7 
+   z = 37 
+   w = 10 
+   a = NaN 
+   =======================================
+   */
+
+/*
+Other interesting functions:
+parseFloat()
+Number.parseFloat()
+Number.parseInt()
+isNaN()
+Number.toString()
+Object.valueOf
+*/
+  </script>
+</body>
+</html>
+

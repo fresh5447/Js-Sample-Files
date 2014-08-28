@@ -1,0 +1,60 @@
+<html>
+<head> 
+  <meta charset="utf-8" />
+</head>
+
+<body>
+ <script>
+  // "regular" function with global scope 
+  var hello1 = function () {
+                  return "goodbye";
+              }   
+  
+  // self-executing function with global scope 
+  var hello2 = (function () {
+                  return "goodbye";
+              })();   
+  
+  // this prints the definition of hello1:
+  console.log("hello1:   "+hello1);
+  
+  // this executes the function hello1:
+  console.log("hello1(): "+hello1());
+  
+  // this prints the output from a 
+  // a self-executing function:
+  console.log("hello2:   "+hello2);
+  
+  try {
+    console.log("hello2(): "+hello2());
+  }
+  catch (e) {
+    console.log("AN ERROR OCCURRED: "+e);
+    console.log("What should we do here?");
+  }
+  
+  // the next line attempts to execute a string
+  // which is not a function (hence the error)
+  console.log("hello2(): "+hello2());
+  
+  /* 
+  =======================================
+  HERE IS THE OUTPUT:
+  hello1:   function () {
+                  return "goodbye";
+              } 
+  
+  hello1(): goodbye
+  
+  hello2:   goodbye 
+  
+  AN ERROR OCCURRED: TypeError: string is not a function 
+  What should we do here? 
+  
+  Uncaught TypeError: string is not a function 
+  =======================================
+  */
+ </script>
+</body>
+</html>
+
